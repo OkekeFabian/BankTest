@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Create</title>
+    </h:head>
+    <h:body>
+        <h:form id="bank_form" prependId="false">
+            <p:messages id="msgs"></p:messages>
+            <p:panelGrid columns="2">
+                <p:outputLabel for="bank_name" value="Name"/>
+                <p:inputText id="bank_name" required="true" alt="Name" value="#{bankController.bank.name}" >
+                    <p:ajax event="blur" update="msgs"/>
+                </p:inputText>
+                
+                
+                <p:commandButton value="CREATE" action="#{bankController.actionSave()}"></p:commandButton>
+                <p:commandButton value="BACK" action="banks" immediate="true"></p:commandButton>
+               
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

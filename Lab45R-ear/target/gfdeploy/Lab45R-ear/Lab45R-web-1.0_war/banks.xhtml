@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Banks</title>
+    </h:head>
+    <h:body>
+        <h:form prependId="false" id="banks_form" >
+            <p:dataTable var="a" value="#{banksController.banks}" emptyMessage="No banks" id="banks_table"
+                         rows="#{banksController.banks.size()}" editable="true">
+                <p:ajax event="rowEdit" listener="#{banksController.updateBank(rowEditor)}" update="banks_table" />
+                <p:column headerText="Name">
+                    <p:cellEditor>  
+                        <f:facet name="output"><h:outputText value="#{a.name}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{a.name}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Customers">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{a.customers}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{a.customers}" style="width:100%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Delete">
+                    <p:commandButton value="DELETE" actionListener="#{banksController.deleteBank(a)}" update="banks_table"/>
+                </p:column>
+                <p:column style="width:32px">
+                    <p:rowEditor />
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="ADD" action="bank"/>
+                </f:facet>
+
+            </p:dataTable>
+            <p:commandButton value="HOME" action="index"/>
+        </h:form>
+    </h:body>
+</html>
+
+
